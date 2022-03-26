@@ -1,0 +1,34 @@
+import {  NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react'
+import { Entypo } from '@expo/vector-icons';
+
+import About from "../../screens/about/about";
+
+const Stack =createNativeStackNavigator();
+const AboutContainer = () => {
+  return (
+    <NavigationContainer>
+         <Stack.Navigator initialRouteName='About' screenOptions={
+            {
+                headerStyle:{
+                    backgroundColor:"#00000090",
+                },
+                headerTintColor:"#ffffff",
+                headerBackVisible:false,
+                headerShadowVisible:false,
+              
+            }
+        }>
+         <Stack.Screen name="About" component={About} options=
+             {
+                 ({route,navigation})=>({title:route.params?.name||"About",headerRight:()=><Entypo onPress={()=>navigation.navigation("Home")} style={{color:"white"}} name="back" size={24} color="black" />
+                })
+             }></Stack.Screen>
+        
+        </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default AboutContainer 
